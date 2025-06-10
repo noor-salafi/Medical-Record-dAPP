@@ -39,7 +39,7 @@ const DeleteMyRecord = () => {
           placeholder="Enter record index (e.g. 0, 1)"
           value={index}
           onChange={(e) => setIndex(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-80 p-2 border rounded"
         />
         {submitError && <p className="text-red-500">{submitError}</p>}
         <button

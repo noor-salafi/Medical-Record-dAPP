@@ -28,7 +28,7 @@ const RevokeAccess = () => {
       
       if (setRvLoading) setRvLoading(true);
       await revokeAccess(doctorAddress);
-      setDoctorAddress(""); // ✅ Clear input after success
+      setDoctorAddress("");
     } catch (error) {
       console.error("Revoke access error:", error);
 

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const AddRecordForm = () => {
   const { addRecord, isAddRLoading, isWalletConnected } = useWeb3();
   const [ipfsHash, setIpfsHash] = useState("");
+  const [fileName, setFileName] = useState("");
   const [submitError, setSubmitError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -23,19 +24,25 @@ const AddRecordForm = () => {
       setSubmitError("⚠ Please enter an IPFS hash.");
       return;
     }
+    if (!fileName){
+      setSubmitError("⚠ Please enter your file name.");
+      return;
+    }
 
-    setSubmitError(""); // clear previous errors
+    setSubmitError("");
+
 
     try {
-      await addRecord(ipfsHash);
+      await addRecord(ipfsHash, fileName);
       toast.success("✅ Record added successfully!", {
         position: "top-right",
         autoClose: 2000,
         theme: "colored",
       });
-      setIpfsHash(""); // clear input field after success
+      setIpfsHash("");
+      setFileName("");
     } catch (error) {
-      console.error("Add record failed:", error);
+      console.error("Add record failed in component:", error);
       toast.error("❌ Failed to add record. Try again.", {
         position: "top-right",
         autoClose: 2000,
@@ -54,9 +61,18 @@ const AddRecordForm = () => {
           value={ipfsHash}
           onChange={(e) => setIpfsHash(e.target.value)}
           placeholder='Enter IPFS Hash'
-          className='w-full p-2 border rounded'
+          className='w-80 p-2 border rounded'
           required
         />
+        <input
+          type="text"
+          value={fileName}
+          onChange={(e) => setFileName(e.target.value)}
+          placeholder='Enter your file name.'
+          className='w-80 p-2 border rounded'
+          required
+        />
+
         {submitError && <p className='text-red-500'>{submitError}</p>}
 
         <button

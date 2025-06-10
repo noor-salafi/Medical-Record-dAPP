@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { useWeb3 } from "../context/web3Context";
@@ -7,7 +6,7 @@ const Header = () => {
   const {connectWallet,currentAccount} = useWeb3();
   
   return (
-    <header className="bg-white shadow-md py-4">
+    <header className="bg-white shadow-md py-4 ">
       <nav className="container mx-auto flex justify-between items-center px-4">
         <h1 className="text-2xl font-bold text-blue-600">🩺 MedRecord DApp</h1>
         <div className="space-x-4">

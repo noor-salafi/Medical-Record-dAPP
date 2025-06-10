@@ -44,8 +44,7 @@ const PatientRecords = () => {
         </button>
       </form>
 
-      {/* {isLoading && <p>Loading patient's records...</p>}
-      {error && <p className="text-red-500">{error}</p>} */}
+    
 
       {records.length === 0 && !isLoading && !error && (
         <p>No records found or access denied.</p>

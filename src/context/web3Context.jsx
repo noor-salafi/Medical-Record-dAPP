@@ -270,30 +270,32 @@ console.log("🧾 Signer Address trying to register:", signerAddress);
             }
         }
     };
-    const addRecord = async (ipfsHash) => {
+const addRecord = async (ipfsHash, fileName) => {
   try {
-    if (!currentAccount) throw new Error("Wallet not connected");
+    if (!currentAccount) {
+      throw new Error("Wallet not connected");
+    }
 
-    const doctorAddress = currentAccount;
-    const timestamp = Math.floor(Date.now() / 1000); // Current unix timestamp (seconds)
-    const recordString = `${ipfsHash},${doctorAddress},${timestamp}`;
+    if (!contract) {
+      throw new Error("Contract is not initialized");
+    }
 
     setIsAddRLoading(true);
 
-    const tx = await contract.addRecord(recordString, { from: currentAccount });
+    // contract already signer যুক্ত, সরাসরি কল দাও
+    const tx = await contract.addRecord(ipfsHash, fileName);
     await tx.wait();
 
-    toast.success("Record added successfully!");
-    
     setIsAddRLoading(false);
     setAddRError("");
-
   } catch (error) {
     setIsAddRLoading(false);
-    console.error("Add record failed:", error);
-    toast.error("Failed to add record!");
+    console.error("Add record failed in web3Context:", error);
+    throw error;
   }
 };
+
+
 
     const getMyRecords = async (showToast = false) => {
   try {
@@ -316,10 +318,10 @@ console.log("🧾 Signer Address trying to register:", signerAddress);
     setRecordError("");
 
     if (showToast) {
-      new Audio("/sounds/success.mp3").play();
+    //   new Audio("/sounds/success.mp3").play();
       toast.success("✅ Fetched your records successfully!", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         pauseOnHover: true,
         draggable: true,
         theme: "colored",
@@ -332,11 +334,11 @@ console.log("🧾 Signer Address trying to register:", signerAddress);
     console.error(err);
     setIsRecordLoading(false);
     setRecordError("❌ Failed to fetch your records!");
-    new Audio("/sounds/error.mp3").play();
+    // new Audio("/sounds/error.mp3").play();
 
     toast.error("❌ Failed to fetch your records!", {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       pauseOnHover: true,
       draggable: true,
       theme: "colored",

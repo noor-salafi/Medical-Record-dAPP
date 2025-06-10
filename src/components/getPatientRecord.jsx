@@ -55,7 +55,7 @@ const GetPatientRecords = () => {
           placeholder="Enter patient's address"
           value={patientAddress}
           onChange={(e) => setPatientAddress(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-80 p-2 border rounded"
         />
         {submitError && <p className="text-red-500">{submitError}</p>}
         <button
@@ -69,7 +69,7 @@ const GetPatientRecords = () => {
       {records.length > 0 && (
         <ul className="space-y-2">
           {records.map((record, i) => {
-            const ipfsHash = record.split(",")[0]; // ✅ Only the CID
+            const ipfsHash = record.split(",")[0]; 
             return (
               <li key={i} className="p-3 border rounded-lg bg-gray-50">
                 <span className="text-sm text-gray-600">Record #{i + 1}</span>

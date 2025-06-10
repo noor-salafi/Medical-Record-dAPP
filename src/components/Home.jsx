@@ -7,14 +7,16 @@ import GetPatientRecords from "./getPatientRecord";
 import GrantAccess from "./GrantAccess";
 import RevokeAccess from "./RevokeAccess";
 import DeleteMyRecord from "./DeleteMyRecord";
-// import PatientRecords from "./PatientRecords";
+import PatientRecords from "./PatientRecords";
 // import ActiveDoctorList from "./ActiveDoctorList";
 
 
 const Home = () => {
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
-
+    <div className="max-w-4xl mx-auto p-4 space-y-6  "
+    
+    >
+      
 
         {/* <RegisterPatientForm />
         <RegisteDoctorForm /> */}
@@ -24,7 +26,7 @@ const Home = () => {
         <GrantAccess />
         <RevokeAccess />
         <DeleteMyRecord />
-        {/* <PatientRecords /> */}
+        <PatientRecords />
         {/* <ActiveDoctorList /> */}
 
     </div>

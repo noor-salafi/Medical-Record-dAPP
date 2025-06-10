@@ -152,7 +152,12 @@ export const contractABI =[
       "inputs": [
         {
           "internalType": "string",
-          "name": "ipfsHash",
+          "name": "_ipfsHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_fileName",
           "type": "string"
         }
       ],
@@ -245,6 +250,11 @@ export const contractABI =[
               "type": "address"
             },
             {
+              "internalType": "string",
+              "name": "fileName",
+              "type": "string"
+            },
+            {
               "internalType": "uint256",
               "name": "timestamp",
               "type": "uint256"
@@ -298,6 +308,11 @@ export const contractABI =[
               "internalType": "address",
               "name": "uploadedBy",
               "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "fileName",
+              "type": "string"
             },
             {
               "internalType": "uint256",
